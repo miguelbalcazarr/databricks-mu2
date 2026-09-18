@@ -1,0 +1,148 @@
+{
+  // Branding and user-safe launcher preferences. Production security-sensitive
+  // destinations, executable paths, arguments, dependency definitions and IGCN
+  // mode mappings are compiled into Launcher.exe; local JSON edits cannot
+  // redirect PLAY or trusted downloads.
+  "brandName": "RiftMU",
+  "localProfileName": "global",
+  "windowTitle": "RiftMU - MU Online Launcher",
+  "launcherExecutableName": "Launcher.exe",
+  "bootstrapExecutableName": "data/launcher/Launcher.Bootstrap.exe",
+
+  // Launcher.exe is placed in the MU client root. RiftMU pins main.exe and this
+  // working directory in compiled code; these values remain here as documentation.
+  "gameExecutable": "main.exe",
+  "gameWorkingDirectory": ".",
+
+  // Different MU clients use different command lines. Leave empty until you know your client's format.
+  // Available tokens: {account}, {accountRaw}, {width}, {height},
+  // {resolution}, {windowMode}, {windowModeValue}, {gameRoot}.
+  "gameArgumentsTemplate": "",
+  "gameRequiresAdministrator": true,
+  // RiftMU supports two simultaneous clients from this Windows session.
+  "maximumConcurrentGameInstances": 2,
+  // With multiclient enabled, the launcher stays visible after client #1 so
+  // PLAY can start client #2. It hides only after the configured limit starts.
+  "closeLauncherAfterGameStart": true,
+  // Keep the launcher alive briefly so DLL-loader/security failures can be
+  // reported instead of disappearing immediately after main.exe starts.
+  "gameStartupMonitoringSeconds": 10,
+  // When Windows cannot report a process exit code, classify a short runtime
+  // as suspicious for diagnostics. An explicit exit code 0 is always normal.
+  "suspiciousGameExitMinutes": 10,
+
+  // Production always performs the signed-manifest, complete-file and
+  // prerequisite checks at startup; false in mutable JSON is ignored.
+  "autoCheckOnStart": true,
+  "verifyAllManifestFilesOnStart": true,
+  // Guarded offline play is allowed only after a signed manifest was loaded,
+  // the current launcher meets its minimum version, and every required local
+  // file still matches that manifest. Security, disk and dependency failures
+  // never fail open.
+  "allowPlayWhenUpdateServerUnavailable": true,
+
+  // These values document the production endpoint. Launcher.exe pins the
+  // update/news origin and its manifest public key internally; editing this
+  // JSON cannot redirect trusted downloads or replace that key.
+  "manifestPath": "manifest.json",
+  "manifestSignaturePath": "manifest.sig",
+  "requireManifestSignature": true,
+  "manifestPublicKeyFile": "data/launcher/manifest-public.pem",
+  "updateBaseUrls": [
+    "https://launcher.riftmu.com/"
+  ],
+
+  "httpRequestTimeoutSeconds": 12,
+  "httpRetryCount": 1,
+  "tryDirectConnectionWithoutProxy": true,
+  // Repair refreshes HTTP pools, flushes stale/negative Windows DNS cache
+  // entries, and retries through a direct IPv4 route when IPv6 is broken.
+  "tryIpv4DirectFallback": true,
+  "refreshNetworkOnRepair": true,
+  "flushDnsOnRepair": true,
+
+  "browser": {
+    "websiteUrls": [
+      "https://launcher.riftmu.com/"
+    ],
+    "externalWebsiteUrl": "https://www.riftmu.com",
+    "discordUrl": "",
+    "autoInstallWebView2": true,
+    "webView2BootstrapperUrl": "https://go.microsoft.com/fwlink/p/?LinkId=2124703"
+  },
+
+  "gameSettings": {
+    "enabled": true,
+    // This exact IGCN client reads its installation-local LauncherOption.if.
+    // Do not write the global WebZen fallback shared by unrelated MU installs.
+    "applyIgcnLauncherOptionSettings": true,
+    "applyWebzenRegistrySettings": false,
+    // Prevent Windows 125/150/200% bitmap scaling from changing the OpenGL
+    // game's requested pixel dimensions. This is the per-user equivalent of
+    // Compatibility > High DPI scaling override > Application for main.exe.
+    "applyHighDpiCompatibility": true,
+    // availableResolutions and resolutionIndices are informational only and
+    // are ignored by the launcher since 1.4.16. They are kept so that older
+    // launcher.config.json files still parse. The sizes offered come from the
+    // primary display: the IGC client sizes Windows reports, up to the native
+    // maximum. DevModeIndex is not a fixed number but the position of the size
+    // in the mode list the client builds on each PC from Windows'
+    // EnumDisplaySettings enumeration, so the launcher derives it per PC and
+    // verifies the client's reported Game Window Size after PLAY.
+    // Windowed choices are never silently reduced to fit. If a size cannot
+    // fit with the chosen scaling, the player must select another combination.
+    "availableResolutions": [
+      "800x600",
+      "1024x768",
+      "1152x864",
+      "1280x720",
+      "1280x800",
+      "1280x960",
+      "1440x1080",
+      "1600x900",
+      "1600x1200",
+      "1680x1050",
+      "1920x1080",
+      "1920x1200",
+      "1920x1440",
+      "2048x1536"
+    ],
+    "defaultResolution": "1920x1080",
+    "defaultWindowMode": "Windowed",
+    // Historical fixed table. It matched the vendor launcher's list only on a
+    // 2560x1600 development display and is ignored; see the comment above.
+    "resolutionIndices": {
+      "800x600": 0,
+      "1024x768": 1,
+      "1152x864": 2,
+      "1280x720": 3,
+      "1280x800": 4,
+      "1280x960": 5,
+      "1440x1080": 6,
+      "1600x900": 7,
+      "1600x1200": 8,
+      "1680x1050": 9,
+      "1920x1080": 10,
+      "1920x1200": 11,
+      "1920x1440": 12,
+      "2048x1536": 13
+    },
+    "windowModeValues": {
+      "Fullscreen": "0",
+      "Windowed": "1"
+    },
+
+    "iniWrites": [],
+    "registryWrites": []
+  },
+
+  // The launcher is self-contained and WebView2 is handled separately. A RiftMU
+  // client containing main.exe, IGC.dll, or freetype.dll requires Microsoft
+  // Visual C++ 2015-2022 x86 version 14.30.30704.0 or newer.
+  // Obsolete DirectX and Visual C++ 2008 packages are not installed.
+  // Only compiled, Microsoft-signed dependency definitions are accepted;
+  // arbitrary installer definitions in this mutable JSON are ignored.
+  // Production forces this built-in prerequisite check on; false is ignored.
+  "autoInstallClientDependencies": true,
+  "dependencies": []
+}
