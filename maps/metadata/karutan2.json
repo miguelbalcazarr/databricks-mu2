@@ -1,0 +1,39 @@
+{
+  "map_name": "Karutan2",
+  "image_path": "maps/images/karutan2_rotated.png",
+  "image_dimensions_px": {
+    "width": 726,
+    "height": 726
+  },
+  "grid_range": {
+    "min": 0,
+    "max": 255,
+    "confirmed": false
+  },
+  "scale_px_per_unit": 2.0,
+  "y_axis_inverted": true,
+  "y_axis_origin": "bottom-left",
+  "north_up_confirmed": false,
+  "rotation_correction": {
+    "applied": true,
+    "confirmed": true,
+    "confirmed_date": "2026-09-19",
+    "pre_rotation_size_px": 512,
+    "pre_rotation_image": "maps/images/karutan2.png",
+    "pil_rotate_deg": -45,
+    "pil_rotate_expand": true,
+    "post_rotation_size_px": {"width": 726, "height": 726},
+    "translate_x": 362.5,
+    "translate_y": 1.0,
+    "pixel_formula_note": "1) px0 = x*scale_px_per_unit ; py0 = (grid_max - y)*scale_px_per_unit (formula normal sobre el navimapa sin rotar, 512x512). 2) rotar: c = cos(radians(45)); rx = c*(px0 - py0) + translate_x; ry = c*(px0 + py0) + translate_y. (rx,ry) es el pixel final sobre karutan2.png (726x726). Constantes translate_x/translate_y derivadas empiricamente (no analiticamente) probando puntos de referencia contra PIL rotate(-45, expand=True) sobre un canvas de 512x512 -- deberian reutilizarse para cualquier otro mapa de este mismo grupo (misma fuente 512x512 + mismo angulo -45 + expand=True)."
+  },
+  "validation": {
+    "validated_points": [
+      {
+        "note": "7 coordenadas de 'Giant Ogre' (121,64) (140,83) (104,45) (209,112) (79,125) (163,8) (105,60) confirmadas por el usuario in-game contra la version ROTADA -- no contra la version sin rotar. Confirmacion cualitativa (el usuario comparo las dos entregas y elgio la rotada), no un point-by-point con captura in-game de cada spawn."
+      }
+    ]
+  },
+  "status": "partially_validated",
+  "notes": "2026-09-18 MIGRADO A NAVIMAP: World82 (Navimap82.OZP en Data/Interface/GFx/NaviMap/, extraido con maps/tools/oz_convert.py). Fuente del cliente, alineada al grid sin rotacion (a diferencia de la version anterior que venia de minimap.png de MU Online Fanz, rotada 45 grados -- ver errores-conocidos.md#E13 y decisiones.md#D08), sin letterbox. Identificacion via agente de investigacion (Opus): correlacion/IoU contra la imagen anterior tras compensar la rotacion. --- NOTAS PREVIAS: Imagen reemplazada 2026-09-18 (segunda vez): la version con sombreado (MU Online Fanz map.jpg, 1024x1024) se reemplazo por la esquematica plana (minimap2.png via hotspots2.php, ver errores-conocidos.md#E07/E12), 650x650, recompuesta sobre blanco por canal alfa variable (errores-conocidos.md#E11). --- 2026-09-19 (ver decisiones.md#D10 y errores-conocidos.md#E15): CORRECCION IMPORTANTE -- a diferencia de Debenter, para Karutan2 el navimapa SI necesitaba la rotacion de 45 grados. Validado entregando dos versiones (sin rotar / rotada) con las 7 coordenadas de Giant Ogre y el usuario confirmo in-game que la version ROTADA es la correcta. La imagen sin rotar original se archivo como karutan2_navimap_source.png (ya no es la imagen activa). image_path ahora apunta a la version rotada (726x726) -- ver 'rotation_correction' arriba para la formula de conversion de coordenadas."
+}

@@ -1,0 +1,47 @@
+{
+  "map_name": "Swamp of Darkness",
+  "image_path": "maps/images/swamp_of_darkness_rotated.png",
+  "image_dimensions_px": {
+    "width": 726,
+    "height": 726
+  },
+  "grid_range": {
+    "min": 0,
+    "max": 255,
+    "confirmed": false
+  },
+  "scale_px_per_unit": 2.0,
+  "y_axis_inverted": true,
+  "y_axis_origin": "bottom-left",
+  "north_up_confirmed": false,
+  "validation": {
+    "validated_points": [
+      {
+        "game_coord": [
+          208,
+          142
+        ],
+        "label": "Boss Zone Entrance",
+        "confirmed_via": "in-game screenshot, 3D view (not minimap)"
+      }
+    ]
+  },
+  "status": "partially_validated",
+  "notes": "2026-09-18 MIGRADO A NAVIMAP: World123 (Navimap123.OZP en Data/Interface/GFx/NaviMap/, extraido con maps/tools/oz_convert.py). CORRECCION a la nota generica de migracion: a diferencia de la mayoria del banco, la imagen anterior (map.jpg de MU Online Fanz, NO minimap.png) NO estaba rotada 45 grados -- el agente de investigacion confirmo 'la isla pentagonal del centro y el blob suelto abajo a la derecha coinciden pixel a pixel, sin rotar' contra Navimap123. Aun asi se migro por ser la fuente mas autoritativa (directo del cliente) y por consistencia con el resto del banco. IMPORTANTE -- el punto validado (208,142)='Boss Zone Entrance' de D01 se calibro especificamente contra la imagen VIEJA (510x510, map.jpg). La imagen nueva es 512x512 (escala 2.0 en vez de 1.99, diferencia minima) y, segun el reporte del agente, sin rotacion -- por lo tanto el punto deberia seguir cayendo en el mismo lugar aproximado, pero esto NO se re-confirmo visualmente sobre la imagen nueva todavia. Tratar la validacion como PENDIENTE DE RE-CONFIRMAR hasta verificarlo. --- NOTAS PREVIAS: Escala y eje Y validados contra el punto (208,142). Orientacion norte-arriba sin confirmar con brujula o minimapa. Rango de grid asumido 0-255, no validado explicitamente. Nota sin resolver: la pagina oficial de Webzen (muonline.webzen.com) menciona coordenadas de boss zone (12,158) y (241,91), distintas del punto validado (208,142) -- podrian ser esquinas de zona vs. punto de entrada, no se investigo mas a fondo.\n--- 2026-09-19: el usuario instruyo usar la version ROTADA (45 grados) como la imagen activa para colocar coordenadas en TODOS los mapas del banco, de forma general (no validada individualmente para este mapa especifico -- ver errores-conocidos.md#E15 y decisiones.md#D11). image_path ahora apunta a '<mapa>_rotated.png'; el archivo original sin rotar se conserva sin tocar bajo su nombre normal.",
+  "rotation_correction": {
+    "applied": true,
+    "confirmed": false,
+    "confirmed_date": null,
+    "pre_rotation_size_px": 512,
+    "pre_rotation_image": "maps/images/swamp_of_darkness.png",
+    "pil_rotate_deg": -45,
+    "pil_rotate_expand": true,
+    "post_rotation_size_px": {
+      "width": 726,
+      "height": 726
+    },
+    "translate_x": 362.5,
+    "translate_y": 1.0,
+    "pixel_formula_note": "1) px0 = x*scale_px_per_unit ; py0 = (grid_max - y)*scale_px_per_unit (formula normal sobre el navimapa sin rotar, 512x512). 2) rotar: c = cos(radians(45)); rx = c*(px0 - py0) + translate_x; ry = c*(px0 + py0) + translate_y. (rx,ry) es el pixel final sobre <mapa>_rotated.png (726x726). Constantes translate_x/translate_y derivadas empiricamente probando puntos de referencia contra PIL rotate(-45, expand=True) sobre un canvas de 512x512 -- mismas constantes para todos los mapas de este banco porque todos parten de un navimapa 512x512."
+  }
+}

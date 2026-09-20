@@ -1,0 +1,38 @@
+{
+  "map_name": "Aida1",
+  "image_path": "maps/images/aida1_rotated.png",
+  "image_dimensions_px": {
+    "width": 726,
+    "height": 726
+  },
+  "grid_range": {
+    "min": 0,
+    "max": 255,
+    "confirmed": false
+  },
+  "scale_px_per_unit": 2.0,
+  "y_axis_inverted": true,
+  "y_axis_origin": "bottom-left",
+  "north_up_confirmed": false,
+  "validation": {
+    "validated_points": []
+  },
+  "status": "assumed_default",
+  "notes": "2026-09-19 MAPA NUEVO: confirmado en el dump de TopMU via Data/Local/movereq.bmd (indice interno 25, nivel 150, zen 8500, gate_id 119 -- ver decisiones.md#D12). ADVERTENCIA VERIFICADA: el banco ya tenia ashen_aida.json (World135, alias 'Gray/Ashy Aida') -- se confirmo VISUALMENTE que Aida1 es un mapa DISTINTO: la silueta de Navimap34 (blob con protuberancia en forma de llave arriba y un apendice largo tipo 'bombon con palito' a la izquierda, con una plataforma cuadriculada en la esquina inferior izquierda) no tiene ninguna relacion con la silueta de Ashen Aida (arbol/coral ramificado, World135, ver ashen_aida.png) -- comparacion directa imagen contra imagen, no solo por nombre (mismo cuidado que errores-conocidos.md#E09). World## identificado como World34: (1) formula World##=mapID_estandar+1 (confirmada 5/5 en decisiones.md#D05) aplicada al mapID publico de 'Aida' = 33 (muonlinehelp.com/map/33, confirmado tambien por listado de RaGEZONE) da World34; (2) evidencia de assets: Data/Object34/ tiene texturas exclusivas con prefijo 'aida' (AidaWeapon.OZJ, aidaflower.OZT, aidalightflower.OZJ, aidarockA.OZJ, aidastone01.OZJ, aidaworldwallC.OZJ) que solo aparecen (barridas las 147 carpetas Object##) en Object34, Object35 y Object135 (Ashen Aida, que reusa el mismo set de assets con prefijo 'so_' para la variante estacional) -- ningun otro World tiene este set completo; (3) confirmacion visual cuantitativa: se extrajo Navimap34.OZP con maps/tools/oz_convert.py, se le aplico PIL rotate(-45, expand=True) y el resultado calza casi pixel a pixel contra minimap.png de MU Online Fanz para 'Aida' (muonlinefanz.com/tools/maps/data/graphics/Aida/minimap.png, referenciado desde su hotspots1.php) -- misma protuberancia en forma de llave arriba, mismo apendice largo a la izquierda con la plataforma cuadriculada al final, misma distribucion de agujeros/circulos internos. Confianza: ALTA (formula + evidencia de assets exclusivos + match visual directo contra fuente publica, mismo nivel de evidencia que decisiones.md#D05 para Elbeland). Fuente de la imagen: Data/Interface/GFx/NaviMap/Navimap34.OZP (no MU Online Fanz) -- sigue la prioridad de decisiones.md#D08. Relacion con Aida2: fanz solo tiene una pagina/imagen para 'Aida' (sin hotspots2.php real -- se probo y devuelve una pagina vacia/generica), y ni muonlinehelp.com ni otras fuentes publicas dan un mapID separado para 'Aida2' (muonlinehelp.com/map/34 es 'Crywolf', un mapa de evento sin relacion). Pese a eso, verificado que Aida1 y Aida2 SON LAYOUTS DISTINTOS: Data/Object35/ tiene el mismo set exclusivo de texturas 'aida*' que Object34 (evidencia de familia de assets compartida, esperable si son zonas contiguas de la misma expansion), pero Navimap35.OZP tiene una silueta completamente diferente a Navimap34 (blob redondeado con grandes huecos internos y una estructura tipo rosa de los vientos/plataforma octogonal en la parte inferior, sin el apendice en forma de llave ni el 'bombon con palito' de Aida1) -- ver aida2.json para el detalle. Conclusion: mismo patron que Karutan1/Karutan2 (decisiones.md#D06, mundos distintos con nombre numerado) y NO el patron de Elbeland (decisiones.md#D05, subzonas de un mismo World) -- aplicada la leccion de errores-conocidos.md#E10 de no asumir layout compartido solo por el sufijo numerico, y en este caso la verificacion confirmo que efectivamente son mapas distintos. Como el resto del banco (decisiones.md#D11/errores-conocidos.md#E15), image_path apunta a la version ROTADA 45 grados por instruccion general del usuario -- la rotacion en si NO esta confirmada especificamente para Aida1 contra una captura in-game real (aunque sí matchea bien contra el minimap.png de fanz, que es una fuente externa, no el juego mismo). El archivo sin rotar se conserva en maps/images/aida1.png.\n--- 2026-09-19 CORRECCION POR CONOCIMIENTO DIRECTO DEL USUARIO (ver decisiones.md#D16): el usuario confirmo jugando que este mapa (World34) contiene tanto Aida1 como Aida2 -- la conclusion anterior de este mismo campo de notas ('Aida1 y Aida2 SON LAYOUTS DISTINTOS') queda CORREGIDA/ANULADA por evidencia directa del juego, no solo por comparacion de siluetas/assets. El usuario pidio dejar este archivo (aida1) tal cual esta -- no se renombra, sigue siendo la imagen activa para ambas zonas. El archivo 'aida2.json'/'aida2.png' (World35) se elimino del banco por ser redundante/incorrecto.",
+  "rotation_correction": {
+    "applied": true,
+    "confirmed": false,
+    "confirmed_date": null,
+    "pre_rotation_size_px": 512,
+    "pre_rotation_image": "maps/images/aida1.png",
+    "pil_rotate_deg": -45,
+    "pil_rotate_expand": true,
+    "post_rotation_size_px": {
+      "width": 726,
+      "height": 726
+    },
+    "translate_x": 362.5,
+    "translate_y": 1.0,
+    "pixel_formula_note": "1) px0 = x*scale_px_per_unit ; py0 = (grid_max - y)*scale_px_per_unit (formula normal sobre el navimapa sin rotar, 512x512). 2) rotar: c = cos(radians(45)); rx = c*(px0 - py0) + translate_x; ry = c*(px0 + py0) + translate_y. (rx,ry) es el pixel final sobre <mapa>_rotated.png (726x726). Constantes translate_x/translate_y derivadas empiricamente probando puntos de referencia contra PIL rotate(-45, expand=True) sobre un canvas de 512x512 -- mismas constantes para todos los mapas de este banco porque todos parten de un navimapa 512x512."
+  }
+}

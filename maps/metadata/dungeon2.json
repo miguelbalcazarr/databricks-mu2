@@ -1,0 +1,38 @@
+{
+  "map_name": "Dungeon2",
+  "image_path": "maps/images/dungeon2_rotated.png",
+  "image_dimensions_px": {
+    "width": 726,
+    "height": 726
+  },
+  "grid_range": {
+    "min": 0,
+    "max": 255,
+    "confirmed": false
+  },
+  "scale_px_per_unit": 2.0,
+  "y_axis_inverted": true,
+  "y_axis_origin": "bottom-left",
+  "north_up_confirmed": false,
+  "validation": {
+    "validated_points": []
+  },
+  "status": "assumed_default",
+  "notes": "2026-09-19 MAPA NUEVO. Piso 2 de 3 del calabozo clasico bajo Lorencia -- DISTINTO de 'Deep Dungeon 1-5' (World117-121, ya en el banco). Identificado en Data/Local/movereq.bmd (decisiones.md#D12): entrada 'Dungeon2' (indice interno 9, no es World##; lvl=40, zen=3500). --- INCERTIDUMBRE IMPORTANTE, documentada explicitamente (no un descuido): NO se encontro en este dump un World## propio para este piso. Se investigaron los candidatos numericos vecinos a Dungeon (World2): Data/World10 y Data/World12 existen como carpetas en Data/, pero (a) ninguno de los dos tiene Navimap<N>.OZP en Data/Interface/GFx/NaviMap/ (rango de indices disponibles documentado en errores-conocidos.md#E13 no incluye 10 ni 12), y (b) sus texturas (rain01/02/03.OZT, leaf02.OZJ, TileGrass01/02.OZJ en World10; leaf01/02 y TileGrass en World12) sugieren mapas EXTERIORES con lluvia/vegetacion, no un calabozo subterraneo -- descartados como candidatos por evidencia de assets, mismo tipo de razonamiento que decisiones.md#D05 (texturas exclusivas). Tampoco existen carpetas Data/World13-18 ni Data/World20-24 en este dump (rango donde podrian esperarse mapas de evento adicionales), asi que no hay otro candidato numerico obvio. Fuentes publicas cruzadas: muonlinehelp.com solo tiene una pagina (map/1, 'Dungeon') para el calabozo completo, sin entrada propia para 'Dungeon 2'; muonlinefanz.com describe el calabozo como 'Floor 1/Floor 2/Floor 3' -- secciones de UNA MISMA ubicacion continua, no mapas separados con imagenes distintas (a diferencia del patron de Abyss of Atlans 1/2/3, ver errores-conocidos.md#E10, donde cada numero SI tenia su propia imagen/hotspot). Por esta razon se opto por usar la MISMA imagen que dungeon1 (Navimap02.OZP, World2) para dungeon2, en vez de dejarlo sin imagen -- pero a diferencia de Elbeland (decisiones.md#D05, confirmado con correlacion de imagen + texturas exclusivas), aca la equivalencia de imagen para dungeon2 NO esta confirmada con evidencia directa contra el juego real, solo con evidencia indirecta (ausencia de alternativa + fuentes publicas que tratan los 3 pisos como una sola entrada). Si en el futuro aparece evidencia de que los pisos SI tienen minimapas distintos (ej. una captura in-game mostrando un layout diferente al de dungeon1), esta calibracion debe revisarse -- no asumir que quedo resuelto. Imagen RGBA del navimapa compuesta sobre fondo blanco antes de convertir a RGB (errores-conocidos.md#E11). Sin ningun punto validado contra el juego real. Orientacion norte-arriba sin confirmar. Version activa por defecto es la rotada 45 grados (decisiones.md#D11), NO validada individualmente (errores-conocidos.md#E15) -- la version sin rotar se conserva en maps/images/dungeon2.png.",
+  "rotation_correction": {
+    "applied": true,
+    "confirmed": false,
+    "confirmed_date": null,
+    "pre_rotation_size_px": 512,
+    "pre_rotation_image": "maps/images/dungeon2.png",
+    "pil_rotate_deg": -45,
+    "pil_rotate_expand": true,
+    "post_rotation_size_px": {
+      "width": 726,
+      "height": 726
+    },
+    "translate_x": 362.5,
+    "translate_y": 1.0,
+    "pixel_formula_note": "1) px0 = x*scale_px_per_unit ; py0 = (grid_max - y)*scale_px_per_unit (formula normal sobre el navimapa sin rotar, 512x512). 2) rotar: c = cos(radians(45)); rx = c*(px0 - py0) + translate_x; ry = c*(px0 + py0) + translate_y. (rx,ry) es el pixel final sobre <mapa>_rotated.png (726x726). Constantes translate_x/translate_y derivadas empiricamente probando puntos de referencia contra PIL rotate(-45, expand=True) sobre un canvas de 512x512 -- mismas constantes para todo el banco porque todos los mapas parten de un navimapa 512x512."
+  }
+}

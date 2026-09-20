@@ -1,0 +1,38 @@
+{
+  "map_name": "Old Kethotum",
+  "image_path": "maps/images/old_kethotum_rotated.png",
+  "image_dimensions_px": {
+    "width": 726,
+    "height": 726
+  },
+  "grid_range": {
+    "min": 0,
+    "max": 255,
+    "confirmed": false
+  },
+  "scale_px_per_unit": 2.0,
+  "y_axis_inverted": true,
+  "y_axis_origin": "bottom-left",
+  "north_up_confirmed": false,
+  "validation": {
+    "validated_points": []
+  },
+  "status": "assumed_default",
+  "notes": "2026-09-18 RESUELTO Y MIGRADO: World136 confirmado sobre World137 con IoU riguroso (probando las 8 rotaciones/flips): imagen actual vs Navimap136 = 0.725, vs Navimap137 = 0.645, y la similitud entre 136 y 137 entre si es 0.663 -- la brecha a favor de 136 supera el ruido de fondo entre ambos candidatos, confirmando World136. Migrada a Navimap136.OZP. --- NOTAS PREVIAS: Imagen aportada por el usuario (mu.lv, con marca de agua), ya en estilo esquematico plano. Traia circulos numerados de referencia sin leyenda (rojo: la mayoria; azul: 1,2,3,4; verde: 1 cerca del centro-sur), significado sin confirmar. 2026-09-18: aplicada la misma tecnica que Arenil Temple -- (1) recompuesta sobre fondo blanco antes de convertir a RGB porque el archivo original tenia canal alfa variable (ver errores-conocidos.md#E11); (2) circulos desaturados a la paleta gris/neutra del mapa (blend a luminancia proporcional a la saturacion, umbral sat>0.15) para que no compitan con los marcadores de coordenadas que se dibujen despues -- los numeros siguen legibles. La imagen trae una rosa de los vientos decorativa (N arriba, S abajo) en la esquina inferior derecha, pero es un elemento grafico del sitio mu.lv, no una brujula o minimapa in-game -- no se toma como confirmacion de orientacion norte-arriba (north_up_confirmed sigue false) segun la regla del proyecto. 2026-09-18 INVESTIGACION (sin reemplazar imagen): un agente identifico como candidato World136 o World137 (confianza media, los dos navimapas son casi identicos entre si y con la imagen actual, sin poder distinguir cual es el correcto -- Object136 tiene lightmap turquesa, Object137 naranja oxido, ambos con textura de madera quemada/brasas/cuervos consistente con 'Old Kethotum'). Esta imagen NO se reemplazo (a diferencia de otros mapas del banco) porque: (1) ya venia de mu.lv, no de minimap.png de fanz, asi que NO tiene el problema de rotacion de 45 grados (errores-conocidos.md#E13); (2) la ambiguedad 136 vs 137 es real y no se resolvio. Si se quiere migrar a Navimap de todos modos pese a la ambiguedad, comparar visualmente contra Navimap136.OZP y Navimap137.OZP antes de decidir. Sin ningun punto validado contra el juego real.\n--- 2026-09-19: el usuario instruyo usar la version ROTADA (45 grados) como la imagen activa para colocar coordenadas en TODOS los mapas del banco, de forma general (no validada individualmente para este mapa especifico -- ver errores-conocidos.md#E15 y decisiones.md#D11). image_path ahora apunta a '<mapa>_rotated.png'; el archivo original sin rotar se conserva sin tocar bajo su nombre normal.",
+  "rotation_correction": {
+    "applied": true,
+    "confirmed": false,
+    "confirmed_date": null,
+    "pre_rotation_size_px": 512,
+    "pre_rotation_image": "maps/images/old_kethotum.png",
+    "pil_rotate_deg": -45,
+    "pil_rotate_expand": true,
+    "post_rotation_size_px": {
+      "width": 726,
+      "height": 726
+    },
+    "translate_x": 362.5,
+    "translate_y": 1.0,
+    "pixel_formula_note": "1) px0 = x*scale_px_per_unit ; py0 = (grid_max - y)*scale_px_per_unit (formula normal sobre el navimapa sin rotar, 512x512). 2) rotar: c = cos(radians(45)); rx = c*(px0 - py0) + translate_x; ry = c*(px0 + py0) + translate_y. (rx,ry) es el pixel final sobre <mapa>_rotated.png (726x726). Constantes translate_x/translate_y derivadas empiricamente probando puntos de referencia contra PIL rotate(-45, expand=True) sobre un canvas de 512x512 -- mismas constantes para todos los mapas de este banco porque todos parten de un navimapa 512x512."
+  }
+}

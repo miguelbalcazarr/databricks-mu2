@@ -1,0 +1,38 @@
+{
+  "map_name": "Noria",
+  "image_path": "maps/images/noria_rotated.png",
+  "image_dimensions_px": {
+    "width": 726,
+    "height": 726
+  },
+  "grid_range": {
+    "min": 0,
+    "max": 255,
+    "confirmed": false
+  },
+  "scale_px_per_unit": 2.0,
+  "y_axis_inverted": true,
+  "y_axis_origin": "bottom-left",
+  "north_up_confirmed": false,
+  "validation": {
+    "validated_points": []
+  },
+  "status": "assumed_default",
+  "notes": "2026-09-19 MAPA NUEVO. Identificado en el dump de TopMU via Data/Local/movereq.bmd (decisiones.md#D12, maps/tools/movereq_decode.py): entrada 'Noria' (indice interno 3, no confundir con World##; lvl=10, zen=2000). World## resuelto como World4 (Navimap04.OZP en Data/Interface/GFx/NaviMap/, extraido con maps/tools/oz_convert.py) usando la formula World##=mapID_estandar+1 (confirmada 5/5 veces en decisiones.md#D05): mapID publico de Noria = 3 (confirmado via WebSearch contra muonlinehelp.com/map/3, que efectivamente titula la pagina 'Noria'), por lo tanto World4. Ademas la formula encaja de forma limpia con el patron ya conocido del rango bajo: Lorencia(mapID0->World1) y Devias(mapID2->World3) ya confirmados, dejando World2/World4/World5 libres en Navimap para Dungeon/Noria/LostTower respectivamente (mapID 1/3/4) -- los tres estan disponibles en Data/Interface/GFx/NaviMap/ y ninguno estaba asignado todavia. CONFIRMACION VISUAL: se extrajo Navimap04.OZP y se comparo contra la imagen de referencia publica de muonlinehelp.com/images/maps/Noria.png (255x255) -- ambas muestran el mismo rasgo distintivo (un lago/estanque en forma de gota irregular sobre un campo abierto con puntos dispersos representando construcciones del pueblo elfico), consistente en ambas fuentes aunque la posicion relativa del lago dentro del cuadro difiere un poco (podria deberse a diferencia de orientacion/rotacion entre la fuente web y el navimapa del cliente, sin resolver todavia -- no se confundio con otro mapa por la silueta general). Imagen RGBA del navimapa compuesta sobre fondo blanco antes de convertir a RGB (errores-conocidos.md#E11). Sin ningun punto validado contra el juego real. Orientacion norte-arriba sin confirmar. Version activa por defecto es la rotada 45 grados (decisiones.md#D11), NO validada individualmente para este mapa (errores-conocidos.md#E15) -- la version sin rotar se conserva en maps/images/noria.png.",
+  "rotation_correction": {
+    "applied": true,
+    "confirmed": false,
+    "confirmed_date": null,
+    "pre_rotation_size_px": 512,
+    "pre_rotation_image": "maps/images/noria.png",
+    "pil_rotate_deg": -45,
+    "pil_rotate_expand": true,
+    "post_rotation_size_px": {
+      "width": 726,
+      "height": 726
+    },
+    "translate_x": 362.5,
+    "translate_y": 1.0,
+    "pixel_formula_note": "1) px0 = x*scale_px_per_unit ; py0 = (grid_max - y)*scale_px_per_unit (formula normal sobre el navimapa sin rotar, 512x512). 2) rotar: c = cos(radians(45)); rx = c*(px0 - py0) + translate_x; ry = c*(px0 + py0) + translate_y. (rx,ry) es el pixel final sobre <mapa>_rotated.png (726x726). Constantes translate_x/translate_y derivadas empiricamente probando puntos de referencia contra PIL rotate(-45, expand=True) sobre un canvas de 512x512 -- mismas constantes para todo el banco porque todos los mapas parten de un navimapa 512x512."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "map_name": "Debenter",
+  "image_path": "maps/images/debenter_rotated.png",
+  "image_dimensions_px": {
+    "width": 726,
+    "height": 726
+  },
+  "grid_range": {
+    "min": 0,
+    "max": 255,
+    "confirmed": false
+  },
+  "scale_px_per_unit": 2.0,
+  "y_axis_inverted": true,
+  "y_axis_origin": "bottom-left",
+  "north_up_confirmed": false,
+  "validation": {
+    "validated_points": []
+  },
+  "status": "assumed_default",
+  "notes": "2026-09-18 MIGRADO A NAVIMAP: World97 (Navimap97.OZP en Data/Interface/GFx/NaviMap/, extraido con maps/tools/oz_convert.py). Fuente del cliente, alineada al grid sin rotacion (a diferencia de la version anterior que venia de minimap.png de MU Online Fanz, rotada 45 grados -- ver errores-conocidos.md#E13 y decisiones.md#D08), sin letterbox. Identificacion via agente de investigacion (Opus): correlacion/IoU contra la imagen anterior tras compensar la rotacion. AMBIGUEDAD: World96 y World97 tienen siluetas casi identicas (IoU 0.972 empatado) -- probablemente dos zonas del mismo cluster elemental de Acheron (Debenter esta asociado a ese cluster). Se uso World97 (via formula mapID+1 de muonlinehelp.com/map/96). --- NOTAS PREVIAS: Nombre confirmado por busqueda publica (muonlinehelp.com/map/96). Mapa nuevo (season 19+, se entra desde Acheron/Akeron), no existe Data/World97 en este dump de TopMU. 2026-09-18 REEMPLAZO: imagen anterior era un render con sombreado (1024x1024, map.jpg de MU Online Fanz); reemplazada por la version esquematica plana (minimap1.png via hotspots1.php, mismo metodo que Abyss of Atlans/Elbeland, ver errores-conocidos.md#E07/E12), 650x650, recompuesta sobre blanco por canal alfa variable (errores-conocidos.md#E11). Sin ningun punto validado contra el juego real. --- 2026-09-19 (ver decisiones.md#D09): el usuario aporto una captura del overlay del piso in-game (vista isometrica, no brujula/minimapa UI) cuya silueta coincide con esta imagen sin necesidad de rotar (espiral a la izquierda, calzada horizontal al medio, apendice diagonal abajo-derecha). Es evidencia a favor de la orientacion relativa actual, pero por ser vista en perspectiva 3D NO alcanza para confirmar north_up -- sigue pendiente brujula o minimapa real.\n--- 2026-09-19: IMPORTANTE -- este mapa tenia una validacion real (decisiones.md#D09) que confirmo que la version SIN rotar era la correcta (capturas in-game del espiral y la calzada). El usuario decidio explicitamente anular esa validacion y usar tambien la version rotada aqui, como parte de la regla general para todo el banco (ver decisiones.md#D11). Status baja de 'assumed_default' con nota positiva a 'assumed_default' llano -- la rotacion en este mapa especifico esta activa por instruccion directa del usuario, NO por evidencia; D09 sigue documentado como la unica validacion real que existe y contradice esta configuracion.",
+  "rotation_correction": {
+    "applied": true,
+    "confirmed": false,
+    "confirmed_date": null,
+    "pre_rotation_size_px": 512,
+    "pre_rotation_image": "maps/images/debenter.png",
+    "pil_rotate_deg": -45,
+    "pil_rotate_expand": true,
+    "post_rotation_size_px": {
+      "width": 726,
+      "height": 726
+    },
+    "translate_x": 362.5,
+    "translate_y": 1.0,
+    "pixel_formula_note": "1) px0 = x*scale_px_per_unit ; py0 = (grid_max - y)*scale_px_per_unit (formula normal sobre el navimapa sin rotar, 512x512). 2) rotar: c = cos(radians(45)); rx = c*(px0 - py0) + translate_x; ry = c*(px0 + py0) + translate_y. (rx,ry) es el pixel final sobre <mapa>_rotated.png (726x726). Constantes translate_x/translate_y derivadas empiricamente probando puntos de referencia contra PIL rotate(-45, expand=True) sobre un canvas de 512x512 -- mismas constantes para todos los mapas de este banco porque todos parten de un navimapa 512x512."
+  }
+}

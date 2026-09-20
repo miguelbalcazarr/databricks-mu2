@@ -1,0 +1,38 @@
+{
+  "map_name": "Kanturu Relics",
+  "image_path": "maps/images/kanturu_relics_rotated.png",
+  "image_dimensions_px": {
+    "width": 726,
+    "height": 726
+  },
+  "grid_range": {
+    "min": 0,
+    "max": 255,
+    "confirmed": false
+  },
+  "scale_px_per_unit": 2.0,
+  "y_axis_inverted": true,
+  "y_axis_origin": "bottom-left",
+  "north_up_confirmed": false,
+  "validation": {
+    "validated_points": []
+  },
+  "status": "assumed_default",
+  "notes": "2026-09-19 MAPA NUEVO: identificado en Data/Local/movereq.bmd como 'Kanturu_ruin2' (indice interno 29, nivel 160, reset 350, zen 9000 -- ver decisiones.md#D12). Mismo metodo que kanturu_ruin1.json: muonlinehelp.com/map/38 devuelve 'Kantru 2' (confirmado extrayendo la tabla completa de https://www.muonlinehelp.com/maps), formula World##=mapID+1 (8/8 aciertos previos) da World39. Imagen: Navimap39.OZP (Data/Interface/GFx/NaviMap/), extraida con maps/tools/oz_convert.py, alineada al grid, sin rotacion, sin letterbox, 512x512 sobre grid 0-255 = 2.0 px/unidad exacto. Verificacion visual: la silueta de Navimap39 -- una isla central con varios claros/craters agrupados rodeada de un camino sinuoso en forma de medialuna -- coincide razonablemente bien con la composicion general de la imagen 'Kanturu Ruins' de MU Online Fanz (que agrupa 'Kanturu 1 y 2' en una sola imagen sin separarlos por zona), aunque al ser esa referencia una imagen compuesta de mas de un mapa no se pudo hacer un IoU limpio 1:1 -- la evidencia principal sigue siendo la correspondencia de nombre + la formula, no la correlacion visual exacta. AVISO (errores-conocidos.md#E10 aplicado): Kanturu_ruin1/2/island son 3 World## distintos (38, 39, 40), no un unico layout compartido -- verificado con 3 navimapas visualmente diferentes entre si. Sin ningun punto validado contra el juego real.\n--- Por instruccion del usuario (2026-09-19, ver decisiones.md#D11), la imagen activa por defecto es la version ROTADA 45 grados (sin validar individualmente para este mapa especifico -- ver errores-conocidos.md#E15). image_path apunta a 'kanturu_ruin2_rotated.png'; el archivo original sin rotar se conserva como 'kanturu_ruin2.png'.\n--- 2026-09-19 RENOMBRADO (ver decisiones.md#D16): el usuario confirmo por conocimiento directo del juego que este mapa (World39, antes archivado como 'kanturu_ruin2') es en realidad 'Kanturu Relics' -- el mapa que antes se habia guardado bajo ese nombre (fuente: render con sombreado de MU Online Fanz, World## sin resolver) resulto ser incorrecto y se elimino. Los archivos se renombraron de kanturu_ruin2.* a kanturu_relics.* (imagen y json), sin volver a extraer ni regenerar la imagen -- sigue siendo Navimap39.OZP. El nombre 'Kanturu Ruin 2' queda descartado como identidad de este mapa.",
+  "rotation_correction": {
+    "applied": true,
+    "confirmed": false,
+    "confirmed_date": null,
+    "pre_rotation_size_px": 512,
+    "pre_rotation_image": "maps/images/kanturu_relics.png",
+    "pil_rotate_deg": -45,
+    "pil_rotate_expand": true,
+    "post_rotation_size_px": {
+      "width": 726,
+      "height": 726
+    },
+    "translate_x": 362.5,
+    "translate_y": 1.0,
+    "pixel_formula_note": "1) px0 = x*scale_px_per_unit ; py0 = (grid_max - y)*scale_px_per_unit (formula normal sobre el navimapa sin rotar, 512x512). 2) rotar: c = cos(radians(45)); rx = c*(px0 - py0) + translate_x; ry = c*(px0 + py0) + translate_y. (rx,ry) es el pixel final sobre <mapa>_rotated.png (726x726). Constantes translate_x/translate_y derivadas empiricamente probando puntos de referencia contra PIL rotate(-45, expand=True) sobre un canvas de 512x512 -- mismas constantes para todos los mapas de este banco porque todos parten de un navimapa 512x512."
+  }
+}

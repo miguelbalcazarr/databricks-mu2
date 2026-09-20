@@ -1,0 +1,38 @@
+{
+  "map_name": "Uruk Mountain",
+  "image_path": "maps/images/uruk_mountain_rotated.png",
+  "image_dimensions_px": {
+    "width": 726,
+    "height": 726
+  },
+  "grid_range": {
+    "min": 0,
+    "max": 255,
+    "confirmed": false
+  },
+  "scale_px_per_unit": 2.0,
+  "y_axis_inverted": true,
+  "y_axis_origin": "bottom-left",
+  "north_up_confirmed": false,
+  "validation": {
+    "validated_points": []
+  },
+  "status": "assumed_default",
+  "notes": "2026-09-18 MIGRADO A NAVIMAP: World101 (Navimap101.OZP en Data/Interface/GFx/NaviMap/, extraido con maps/tools/oz_convert.py). Fuente del cliente, alineada al grid sin rotacion (a diferencia de la version anterior que venia de minimap.png de MU Online Fanz, rotada 45 grados -- ver errores-conocidos.md#E13 y decisiones.md#D08), sin letterbox. Identificacion via agente de investigacion (Opus): correlacion/IoU contra la imagen anterior tras compensar la rotacion. AMBIGUEDAD: World101 y World102 tienen siluetas casi identicas (IoU 0.936 empatado) -- no se pudo distinguir cual es especificamente Uruk Mountain con certeza. Se uso World101. Si se necesita mas precision, comparar tambien contra Navimap102. --- NOTAS PREVIAS: Nombre confirmado (cluster elemental de Acheron junto con Alkmaar, Ubaid y Debenter). 2026-09-18 REEMPLAZO: la imagen anterior (350x240 original, upscaleada 2.93x a 1024x1024, borrosa) se reemplazo por la version esquematica plana de MU Online Fanz (minimap.png via hotspots1.php, ver errores-conocidos.md#E07/E12), 650x650, nitida, recompuesta sobre blanco por canal alfa variable (errores-conocidos.md#E11). Ya no aplica el problema de borrosidad por upscale agresivo. Sin ningun punto validado contra el juego real.\n--- 2026-09-19: el usuario instruyo usar la version ROTADA (45 grados) como la imagen activa para colocar coordenadas en TODOS los mapas del banco, de forma general (no validada individualmente para este mapa especifico -- ver errores-conocidos.md#E15 y decisiones.md#D11). image_path ahora apunta a '<mapa>_rotated.png'; el archivo original sin rotar se conserva sin tocar bajo su nombre normal.",
+  "rotation_correction": {
+    "applied": true,
+    "confirmed": false,
+    "confirmed_date": null,
+    "pre_rotation_size_px": 512,
+    "pre_rotation_image": "maps/images/uruk_mountain.png",
+    "pil_rotate_deg": -45,
+    "pil_rotate_expand": true,
+    "post_rotation_size_px": {
+      "width": 726,
+      "height": 726
+    },
+    "translate_x": 362.5,
+    "translate_y": 1.0,
+    "pixel_formula_note": "1) px0 = x*scale_px_per_unit ; py0 = (grid_max - y)*scale_px_per_unit (formula normal sobre el navimapa sin rotar, 512x512). 2) rotar: c = cos(radians(45)); rx = c*(px0 - py0) + translate_x; ry = c*(px0 + py0) + translate_y. (rx,ry) es el pixel final sobre <mapa>_rotated.png (726x726). Constantes translate_x/translate_y derivadas empiricamente probando puntos de referencia contra PIL rotate(-45, expand=True) sobre un canvas de 512x512 -- mismas constantes para todos los mapas de este banco porque todos parten de un navimapa 512x512."
+  }
+}

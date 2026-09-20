@@ -1,0 +1,38 @@
+{
+  "map_name": "Twisted Karutan",
+  "image_path": "maps/images/twisted_karutan_rotated.png",
+  "image_dimensions_px": {
+    "width": 726,
+    "height": 726
+  },
+  "grid_range": {
+    "min": 0,
+    "max": 255,
+    "confirmed": false
+  },
+  "scale_px_per_unit": 2.0,
+  "y_axis_inverted": true,
+  "y_axis_origin": "bottom-left",
+  "north_up_confirmed": false,
+  "validation": {
+    "validated_points": []
+  },
+  "status": "assumed_default",
+  "notes": "2026-09-18 MIGRADA CON CONFIANZA MODERADA: recorte del contenido real (sin el margen negro del letterbox, 1024x669) comparado por IoU contra Navimap143 (mejor match 0.417, con flip horizontal) y contra un control Navimap144/Kardamahal (mejor match 0.267) -- brecha real a favor de 143 (56% mayor que el control), pero el IoU absoluto es moderado, no aplastante como en otros mapas (la imagen anterior era un render con sombreado ruidoso, no un esquematico limpio, lo que dificulta la comparacion). Sigue sin resolverse del todo la señal de contaminacion de texturas (Object143 con prefijo cardahal_, material de Kardamahal) -- tratar World143 como PROBABLE, no confirmado al 100%. Migrada a Navimap143.OZP de todos modos por ser una mejora clara sobre el render anterior. --- NOTAS PREVIAS: El usuario confirmo (2026-09-18) que el nombre a usar es 'Twisted Karutan' -- el nombre oficial de Webzen es 'Distorted Karutan' (muonline.webzen.com/en/gameinfo/guide/detail/393), mismo mapa, nombre de sitio distinto (mismo patron que Red Smoke Icarus/Crimson Flame's Icarus y Kubera/Cubera Mine, ver glosario.md). Mapa DISTINTO de karutan1.png/karutan2.png ya existentes en el banco -- silueta confirmada visualmente diferente (Karutan1/2 tienen forma de S con estructura de diamante central; este es mas redondeado/octogonal, con un nucleo central rojo brillante). No existe en MU Online Fanz (404 con 'Twisted Karutan' y 'Distorted Karutan', mapa nuevo). Unica imagen disponible: el render con sombreado/tema purpura de la pagina oficial de Webzen (mismo patron que gore_tarkan.json -- la imagen mas grande entre los assets de la pagina de guia es el mapa, las demas son retratos de monstruos), 574x375, normalizada con letterbox a 1024x1024 (contenido 1024x669, ~177px margen arriba/abajo, ver errores-conocidos.md#E06). Render top-down, no perspectiva 3D -- usable para coordenadas aunque no sea el estilo esquematico preferido. 2026-09-18 INVESTIGACION (sin reemplazar imagen, esta SIGUE rotada 45 grados -- ver errores-conocidos.md#E13): un agente identifico como candidato World143 (confianza media). Señal de alerta: Object143 (texturas del mundo) contiene archivos con prefijo 'cardahal_'/'cardahaldoor_', que son materiales de Kardamahal Underground Temple (World144, mapa vecino en la numeracion) -- podria ser contaminacion cruzada de assets compartidos entre mapas vecinos, no necesariamente que World143 sea Twisted Karutan. NO se reemplazo la imagen por esta duda sin resolver. Antes de migrar, confirmar con mas evidencia (ej. correlacionar Navimap143.OZP visualmente contra la imagen actual rotada -45 grados, o buscar otra fuente independiente). Sin ningun punto validado contra el juego real.\n--- 2026-09-19: el usuario instruyo usar la version ROTADA (45 grados) como la imagen activa para colocar coordenadas en TODOS los mapas del banco, de forma general (no validada individualmente para este mapa especifico -- ver errores-conocidos.md#E15 y decisiones.md#D11). image_path ahora apunta a '<mapa>_rotated.png'; el archivo original sin rotar se conserva sin tocar bajo su nombre normal.",
+  "rotation_correction": {
+    "applied": true,
+    "confirmed": false,
+    "confirmed_date": null,
+    "pre_rotation_size_px": 512,
+    "pre_rotation_image": "maps/images/twisted_karutan.png",
+    "pil_rotate_deg": -45,
+    "pil_rotate_expand": true,
+    "post_rotation_size_px": {
+      "width": 726,
+      "height": 726
+    },
+    "translate_x": 362.5,
+    "translate_y": 1.0,
+    "pixel_formula_note": "1) px0 = x*scale_px_per_unit ; py0 = (grid_max - y)*scale_px_per_unit (formula normal sobre el navimapa sin rotar, 512x512). 2) rotar: c = cos(radians(45)); rx = c*(px0 - py0) + translate_x; ry = c*(px0 + py0) + translate_y. (rx,ry) es el pixel final sobre <mapa>_rotated.png (726x726). Constantes translate_x/translate_y derivadas empiricamente probando puntos de referencia contra PIL rotate(-45, expand=True) sobre un canvas de 512x512 -- mismas constantes para todos los mapas de este banco porque todos parten de un navimapa 512x512."
+  }
+}
